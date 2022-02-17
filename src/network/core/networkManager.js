@@ -1,5 +1,5 @@
 // Higher Order Class to make all network calls
-import { Stores } from "@redux";
+import store from "redux/store";
 import { HTTP_METHODS } from "./HttpMethods";
 import { ServerConfig } from "./ServerConfig";
 import { Response } from "./ResponseParser";
@@ -28,7 +28,7 @@ export class NetworkManager {
     this.params = params;
     this.body = body;
     this.headers = {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     };
   }
 
@@ -37,17 +37,18 @@ export class NetworkManager {
     let data = [];
     let success = false;
     let code = 200;
-    const state = Stores.getState().app;
+    const state = store.getState().app;
 
     try {
       const url = `${this.baseUrl}/${this.endPointVersion}${this.endpoint}${this.requestParams}`;
 
       const options = {
-        method: this.method,
+        method: this.method
       };
 
-      if (header && state.token) {
+      if (header && state.authToken) {
         this.headers.token = state.token ?? "";
+        // this.headers["Authorization"] = `Bearer ${state.token}` ?? "";
       }
 
       this.headers["Accept-Language"] = "en";

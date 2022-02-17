@@ -1,7 +1,4 @@
-// default exporter on required methods
+// Export all the network calls
+import { AuthService } from "./authService";
 
-import { NetworkManager } from "./NetworkManager";
-import { API } from "./endpoints";
-import { ServerConfig } from "./serverConfig";
-
-export { NetworkManager, API, ServerConfig };
+export { AuthService };

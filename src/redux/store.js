@@ -1,16 +1,16 @@
 import { createStore, combineReducers } from "redux";
-import AppReducer from "../reducers/appReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import AppReducer from "./reducers/appReducer";
 
 const PersistConfig = {
   key: "root",
   storage,
-  whitelist: ["app"],
+  whitelist: ["app"]
 };
 
 const AllReducer = {
-  app: AppReducer,
+  app: AppReducer
 };
 
 const rootReducer = combineReducers(AllReducer);
